@@ -1,4 +1,7 @@
 module "docker" {
   source = "./modules/Docker"
-  #   app_version = "1.0.0"
+}
+
+module "vpc" {
+  source = "./modules/vpc"
 }
