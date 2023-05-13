@@ -89,15 +89,15 @@ output "cluster_security_group_id" {
 # Node Security Group
 ################################################################################
 
-output "node_security_group_arn" {
-  description = "Amazon Resource Name (ARN) of the node shared security group"
-  value       = try(aws_security_group.node[0].arn, null)
-}
+# output "node_security_group_arn" {
+#   description = "Amazon Resource Name (ARN) of the node shared security group"
+#   value       = try(aws_security_group.node[0].arn, null)
+# }
 
-output "node_security_group_id" {
-  description = "ID of the node shared security group"
-  value       = try(aws_security_group.node[0].id, null)
-}
+# output "node_security_group_id" {
+#   description = "ID of the node shared security group"
+#   value       = try(aws_security_group.node[0].id, null)
+# }
 
 ################################################################################
 # IRSA
@@ -150,10 +150,10 @@ output "cluster_iam_role_unique_id" {
 # EKS Identity Provider
 ################################################################################
 
-output "cluster_identity_providers" {
-  description = "Map of attribute maps for all EKS identity providers enabled"
-  value       = aws_eks_identity_provider_config.this
-}
+# output "cluster_identity_providers" {
+#   description = "Map of attribute maps for all EKS identity providers enabled"
+#   value       = aws_eks_identity_provider_config.this
+# }
 
 ################################################################################
 # CloudWatch Log Group
