@@ -41,3 +41,26 @@ No inputs.
 |------|-------------|
 | <a name="output_aggregate"></a> [aggregate](#output\_aggregate) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+
+### Prerequisites of system going to use this module: 
+1: Terraform latest version installed.
+2: Docker installed and accessible through command line.
+3: Helm installed on the system.
+4: Kubectl installed on the system.
+5: Gitbash installed [only for windows.]
+
+### Steps to trigger the creation of resources and deployment of application.
+
+1: Initialize the terraform. 
+```
+terraform init
+```
+2: View the plan by using below command.
+```
+terraform plan
+```
+3: Create the resources by running below command.
+```
+terraform apply -auto-approve
+```
