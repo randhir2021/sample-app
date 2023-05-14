@@ -39,7 +39,7 @@ resource "aws_ecr_repository" "foo" {
 
 resource "terraform_data" "push_command" {
   provisioner "local-exec" {
-    command = "aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com && docker tag sample-docker:latest ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com/sample-docker:latest && docker push ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com/sample-docker:latest"
+    command = "aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com && docker tag my_image:latest ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com/sample-docker:latest && docker push ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com/sample-docker:latest"
   }
   depends_on = [ aws_ecr_repository.foo, docker_image.my_image ]
 

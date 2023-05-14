@@ -20,3 +20,8 @@ module "eks" {
   subnet_ids      = [module.vpc.subnet1, module.vpc.subnet2, module.vpc.subnet3, module.vpc.subnet4]
   node_subnet_ids = [module.vpc.subnet1, module.vpc.subnet2]
 }
+
+module "helm" {
+  source     = "./modules/helm"
+  depends_on = [module.eks, module.docker]
+}
