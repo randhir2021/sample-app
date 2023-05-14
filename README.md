@@ -49,6 +49,7 @@ No inputs.
 3. Helm installed on the system.
 4. Kubectl installed on the system.
 5. Gitbash installed [only for windows.]
+6. NodeJS & npm installed and configured to run through cli.
 
 ### Steps to trigger the creation of resources and deployment of application.
 
