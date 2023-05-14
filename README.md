@@ -44,12 +44,12 @@ No inputs.
 
 
 ### Prerequisites of system going to use this module: 
-1. Terraform latest version installed.
-2. Docker installed and accessible through command line.
-3. Helm installed on the system.
-4. Kubectl installed on the system.
-5. Gitbash installed [only for windows.]
-6. NodeJS & npm installed and configured to run through cli.
+1. Terraform latest version installed. [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+2. Docker installed and accessible through command line. [Docker Installation](https://docs.docker.com/engine/install/)
+3. Helm installed on the system. [Helm](https://helm.sh/docs/intro/install/ß)
+4. Kubectl installed on the system. [Kubectl Installation](https://kubernetes.io/docs/tasks/tools/)
+5. Gitbash installed [only for windows] [Gitbash](https://git-scm.com/download/win)
+6. NodeJS & npm installed and configured to run through cli. [Nodejs & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ### Steps to trigger the creation of resources and deployment of application.
 
