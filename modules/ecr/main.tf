@@ -19,10 +19,10 @@ resource "terraform_data" "command" {
 
 # Docker image build
 resource "docker_image" "my_image" {
-  name         = "my_image"
-  build   {
-    context    = "${path.cwd}"
-        label = {
+  name = "my_image"
+  build {
+    context = path.cwd
+    label = {
       author : "zoo"
     }
   }
@@ -33,7 +33,9 @@ resource "docker_image" "my_image" {
 resource "aws_ecr_repository" "foo" {
   name                 = "sample-docker"
   image_tag_mutability = "MUTABLE"
-
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 
@@ -41,6 +43,6 @@ resource "terraform_data" "push_command" {
   provisioner "local-exec" {
     command = "aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com && docker tag my_image:latest ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com/sample-docker:latest && docker push ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com/sample-docker:latest"
   }
-  depends_on = [ aws_ecr_repository.foo, docker_image.my_image ]
+  depends_on = [aws_ecr_repository.foo, docker_image.my_image]
 
 }

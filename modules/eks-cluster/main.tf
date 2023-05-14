@@ -7,7 +7,7 @@ resource "aws_eks_cluster" "example" {
 
   vpc_config {
     endpoint_private_access = true
-    endpoint_public_access = true
+    endpoint_public_access  = true
     # security_group_ids = 
     subnet_ids = var.subnet_ids
   }
@@ -53,26 +53,26 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
 
 
 resource "aws_security_group" "cluster" {
-  name        = "aws-eks-cluster-security-group"
-  vpc_id      = var.vpc_id
+  name   = "aws-eks-cluster-security-group"
+  vpc_id = var.vpc_id
   lifecycle {
     create_before_destroy = true
   }
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "tcp"
-    self = true
-    
+    description = "TLS from VPC"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+    self        = true
+
   }
 
-   ingress {
-    description      = "TLS from VPC"
-    from_port        = 3000
-    to_port          = 3000
-    protocol         = "tcp"
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -149,9 +149,9 @@ resource "aws_eks_node_group" "example" {
 }
 
 resource "null_resource" "kubectl" {
-    provisioner "local-exec" {
-        command = "aws eks --region ${var.region} update-kubeconfig --name ${var.cluster_name}"
-    }
+  provisioner "local-exec" {
+    command = "aws eks --region ${var.region} update-kubeconfig --name ${var.cluster_name}"
+  }
 
-  depends_on = [ aws_eks_cluster.example ]
+  depends_on = [aws_eks_cluster.example]
 }

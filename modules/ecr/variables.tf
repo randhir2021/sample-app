@@ -1,9 +1,3 @@
-variable "dockerfile_dir" {
-  type = string
-  description = "The directory that contains the Dockerfile"
-  default = "./"
-}
-
 variable "docker_image_tag" {
   type        = string
   description = "This is the tag which will be used for the image that you created"
@@ -11,10 +5,13 @@ variable "docker_image_tag" {
 }
 
 variable "region" {
-  type = string
+  type        = string
+  description = "This is the region where this code is deployed"
+
 }
 
 variable "account_id" {
-  type = string
-  
+  type        = string
+  description = "This is the 12 digit aws account id"
+
 }
