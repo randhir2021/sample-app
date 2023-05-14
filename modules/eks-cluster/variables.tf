@@ -27,3 +27,8 @@ variable "kubeconfig_aws_authenticator_command" {
   type        = string
   default     = "aws-iam-authenticator"
 }
+
+variable "node_subnet_ids" {
+  type = list
+  
+}

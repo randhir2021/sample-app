@@ -13,7 +13,7 @@ resource "aws_eip" "example" {
 
 resource "aws_nat_gateway" "example" {
   allocation_id = aws_eip.example.id
-  subnet_id     = aws_subnet.subnet2.id
+  subnet_id     = aws_subnet.subnet3.id
 
   tags = {
     Name = "NAT-gw"
