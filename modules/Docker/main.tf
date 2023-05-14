@@ -11,10 +11,9 @@ provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
-resource "terraform_data" "example1" {
+resource "terraform_data" "command" {
   provisioner "local-exec" {
     command = "npm install express && npm fund"
-    # interpreter = ["perl", "-e"]
   }
 }
 
@@ -27,7 +26,7 @@ resource "docker_image" "my_image" {
       author : "zoo"
     }
   }
-  depends_on = [terraform_data.example1]
+  depends_on = [terraform_data.command]
 }
 
 # resource "terraform_data" "example2" {
