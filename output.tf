@@ -1,3 +1,3 @@
 output "aggregate" {
-  value = module.eks.*
+  value = [module.eks.*, module.helm_deploy_local.*]
 }

@@ -21,7 +21,13 @@ module "eks" {
   node_subnet_ids = [module.vpc.subnet1, module.vpc.subnet2]
 }
 
-module "helm" {
-  source     = "./modules/helm"
-  depends_on = [module.eks, module.docker]
+module "helm_deploy_local" {
+  source                 = "./modules/helm"
+  deployment_name        = "sample-app"             ## Release name in the namespace
+  deployment_environment = "default"                ## Kubernetes Namespace
+  deployment_path        = "${path.cwd}/sample-app" ## Remote chart location
+  enabled                = true                     ## Enable to deploy the chart
+  template_custom_vars = {
+    deployment_image = "${data.aws_caller_identity.current.id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com/sample-docker:latest"
+  }
 }

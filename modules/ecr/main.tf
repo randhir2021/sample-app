@@ -11,6 +11,7 @@ provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
+
 resource "terraform_data" "command" {
   provisioner "local-exec" {
     command = "npm install express && npm fund"
@@ -34,7 +35,7 @@ resource "aws_ecr_repository" "foo" {
   name                 = "sample-docker"
   image_tag_mutability = "MUTABLE"
   lifecycle {
-    prevent_destroy = true
+    ignore_changes = all
   }
 }
 
@@ -45,4 +46,8 @@ resource "terraform_data" "push_command" {
   }
   depends_on = [aws_ecr_repository.foo, docker_image.my_image]
 
+}
+
+output "docker_repo" {
+  value = aws_ecr_repository.foo.id
 }

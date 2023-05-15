@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: sample-app
-          image: 293109864832.dkr.ecr.us-west-2.amazonaws.com/sample-docker:latest
+          image: "{{ .Values.deployment_image }}"
           ports:
             - containerPort: 3000
               name: http
@@ -41,5 +41,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: tcp
+      targetPort: http
   type: LoadBalancer
