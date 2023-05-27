@@ -1,4 +1,4 @@
-# lucs_project<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+# sample-app<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
