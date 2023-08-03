@@ -72,7 +72,7 @@ print_message "kubectl installed successfully."
 print_message "Installing nvm and Node.js LTS..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 . ~/.nvm/nvm.sh
-nvm install --lts
+nvm install 16
 print_message "Node.js LTS installed successfully."
 
 # Install AWS CLI
