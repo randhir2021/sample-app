@@ -1,11 +1,11 @@
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
-module "docker" {
-  source     = "./modules/ecr"
-  region     = data.aws_region.current.id
-  account_id = data.aws_caller_identity.current.id
-}
+# module "docker" {
+#   source     = "./modules/ecr"
+#   region     = data.aws_region.current.id
+#   account_id = data.aws_caller_identity.current.id
+# }
 
 module "vpc" {
   source = "./modules/vpc"
@@ -22,27 +22,27 @@ module "eks" {
 }
 
 
-resource "time_sleep" "wait_120_seconds" {
-  depends_on = [module.eks]
+# resource "time_sleep" "wait_120_seconds" {
+#   depends_on = [module.eks]
 
-  create_duration = "120s"
-}
+#   create_duration = "120s"
+# }
 
-# This resource will create (at least) 30 seconds after null_resource.previous
-resource "null_resource" "next" {
-  depends_on = [time_sleep.wait_120_seconds]
-}
+# # This resource will create (at least) 30 seconds after null_resource.previous
+# resource "null_resource" "next" {
+#   depends_on = [time_sleep.wait_120_seconds]
+# }
 
 
-module "helm_deploy_local" {
-  source                 = "./modules/helm"
-  deployment_name        = "sample-app"             ## Release name in the namespace
-  deployment_environment = "default"                ## Kubernetes Namespace
-  deployment_path        = "${path.cwd}/sample-app" ## Remote chart location
-  enabled                = true                     ## Enable to deploy the chart
-  template_custom_vars = {
-    deployment_image = "${data.aws_caller_identity.current.id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com/sample-docker:latest"
-  }
+# module "helm_deploy_local" {
+#   source                 = "./modules/helm"
+#   deployment_name        = "sample-app"             ## Release name in the namespace
+#   deployment_environment = "default"                ## Kubernetes Namespace
+#   deployment_path        = "${path.cwd}/sample-app" ## Remote chart location
+#   enabled                = true                     ## Enable to deploy the chart
+#   template_custom_vars = {
+#     deployment_image = "${data.aws_caller_identity.current.id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com/sample-docker:latest"
+#   }
 
-  depends_on = [null_resource.next]
-}
+#   depends_on = [null_resource.next]
+# }
