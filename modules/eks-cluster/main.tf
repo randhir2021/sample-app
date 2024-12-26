@@ -4,7 +4,7 @@ data "aws_caller_identity" "current" {}
 resource "aws_eks_cluster" "example" {
   name     = var.cluster_name
   role_arn = aws_iam_role.example.arn
-  version = "1.26"
+  version = "1.31"
   vpc_config {
     endpoint_private_access = true
     endpoint_public_access  = true
